@@ -30,7 +30,7 @@ To get your Battle.net API Key go [here](https://dev.battle.net/)
 
 # credits
 
-Readme writted with [stackedit](https://stackedit.io/editor).
-Coded with [Sublime Text 3](https://www.sublimetext.com/3).
-Scripts running under [Gigabyte Brix](https://www.gigabyte.com/Mini-PcBarebone/GB-BXi3-5010-rev-10#ov) + [Ubuntu](https://www.ubuntu.com/).
-Originally did it for [Vagrant Story](https://vagrantstory.eu/) (EU-Dun Modr) guild.
+- Readme writted with [stackedit](https://stackedit.io/editor).
+- Coded with [Sublime Text 3](https://www.sublimetext.com/3).
+- Scripts running under [Gigabyte Brix](https://www.gigabyte.com/Mini-PcBarebone/GB-BXi3-5010-rev-10#ov) + [Ubuntu](https://www.ubuntu.com/).
+- Originally did it for [Vagrant Story](https://vagrantstory.eu/) (EU-Dun Modr) guild.
