@@ -25,7 +25,8 @@ To get your Battle.net API Key go [here](https://dev.battle.net/)
 * * * * * timeout 58 /path/streams.py >> /path/log/streams.log 2>&1
 * * * * * timeout 58 /path/warcraftlogs.py >> /path/cron/log/warcraftlogs.log 2>&1
 0 9 * * 3 timeout 60 /path/wowprogress.py >> /path/cron/log/wowprogress.log 2>&1
-0 8 * * 3 timeout 60 /path/affixes.py >> /path/log/affixes.log 2>&1```
+0 8 * * 3 timeout 60 /path/affixes.py >> /path/log/affixes.log 2>&1
+```
 
 # credits
 
