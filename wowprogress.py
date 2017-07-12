@@ -30,6 +30,9 @@ if rank is not None and "realm_rank" in rank:
 	elif int(last) < int(realm):
 		msg = ":arrow_down: Vagrant baja en el ranking de Dun Modr: **{0}** (-{1})".format(realm, int(realm)-int(last))
 
+	elif int(last) == int(realm):
+		msg = ":ok_hand: Vagrant se mantiene en el ranking de Dun Modr: **{0}**".format(realm)
+
 	r.set("bot:wowprogress", realm)
 
 	if msg:
