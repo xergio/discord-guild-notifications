@@ -2,6 +2,8 @@
 
 Take in mind that the first execution of each script will cause a bit of spam on your server.
 
+More info (in spanish) [here](https://sergio.am/post/discord-webhooks-guild-notifications.html).
+
 # configuration
 
 You should edit the `conf.py` file.
