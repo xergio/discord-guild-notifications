@@ -84,9 +84,10 @@ for zone, instance in conf.zones.items():
 
 				#tip = "(piedra +{0} por {1})".format(chests, delta)
 				tip = "(piedra +{0})".format(chests, delta)
-				msg = "{6} **[{0}](<{7}>) +{1}** hecha en **{2}** {3} por {4} / **rank {5}** de Dun Modr".format(instance, lvl, record, tip, " ".join(party), pos, affix, warcraft_api.format(zone))
+				msg = ":mega: **[{0}](<{5}>) +{1}** hecha en **{2}** {3}, **rank {4}** de Dun Modr".format(instance, lvl, record, tip, pos, warcraft_api.format(zone))
 				#r.rpush("bot:rss:new", msg)
 				#print(msg)
+				wh.add_embed(webhook.embed(title=" ".join(party)))
 				wh.send(msg)
 
 	except:

@@ -62,3 +62,5 @@ for news in g["news"]:
 		continue
 
 	wh.send(push)
+	
+	time.sleep(2) # prevent rate limit, for example with boss FK
