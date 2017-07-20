@@ -6,7 +6,7 @@ More info (in spanish) [here](https://sergio.am/post/discord-webhooks-guild-noti
 
 # configuration
 
-You should edit the `conf.py` file.
+You should edit the `tokens.py` file, and you can edit the `conf.py` file. `tokens` file contains tokens (ofc) and api keys for services. `conf` file contains a mix of icons and strings.
 
 To get your Discord Webhook URL go [here](https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
 
