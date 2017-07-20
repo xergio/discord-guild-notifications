@@ -41,6 +41,8 @@ def embed(**kwargs):
 		"description": kwargs.get("description", None),
 		"url": kwargs.get("url", None),
 		"color": kwargs.get("color", None),
+		"image": kwargs.get("image", None),
+		"thumbnail": kwargs.get("thumbnail", None),
 		"footer": kwargs.get("footer", None),
 		"fields": kwargs.get("fields", [])
 	}
@@ -51,6 +53,22 @@ def field(name, value, inline=False):
 		"name": name,
 		"value": value,
 		"inline": inline
+	}
+
+
+def image(url, w=50, h=50):
+	return {
+		"url": url,
+		"width": w,
+		"height": h
+	}
+
+
+def thumbnail(url, w=50, h=50):
+	return {
+		"url": url,
+		"width": w,
+		"height": h
 	}
 
 
