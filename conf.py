@@ -1,17 +1,10 @@
 
-url_discord_webhook = "https://discordapp.com/api/webhooks/???/???????"
-
-battle_net_region = "eu"
-battle_net_apikey = "????"
-
-twitch_token = "?????"
-
-warcraftlogs_token = "???????"
+from tokens import *
 
 icon_wowhead = "<:wowhead:283900950379233280>"
-icon_mmoc = "<:mmochampion:283900921694650368>"
+icon_mmoc = "<:MMOChampion:283900921694650368>"
 icon_twitch = "<:twitch:332609778285019137>"
-icon_warcraftlogs = "<:warcraftlogs:283906655484379138>"
+icon_warcraftlogs = "<:Warcraftlogs:283906655484379138>"
 
 affixes = {
 	"Bullente": "<:m_teeming:278565188410802176>",
