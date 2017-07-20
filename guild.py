@@ -13,9 +13,13 @@ wh = webhook.Webhook(conf.url_discord_webhook)
 
 r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True)
 
+bnet_achs = conf.battle_net_url("https://{0}.api.battle.net/wow/data/guild/achievements?locale=es_ES&apikey={1}")
+
 bnet_guild = conf.battle_net_url("https://{0}.api.battle.net/wow/guild/dun%20modr/vagrant%20story?fields=news,members,achievements&locale=es_ES&apikey={1}")
 
+a = requests.get(url=bnet_achs).json()
 g = requests.get(url=bnet_guild).json()
+
 
 
 if "members" not in g:
@@ -25,7 +29,7 @@ if "members" not in g:
 members = r.smembers("bot:members") # members database, used by other scripts
 chars = set()
 
-# how join the guild, how leaves
+# who join the guild, who leaves
 
 for member in g["members"]:
 	chars.add(member["character"]["name"])
@@ -38,6 +42,7 @@ for new in chars.difference(members):
 for kick in members.difference(chars):
 	r.srem("bot:members", kick)
 	wh.send(":outbox_tray: **{0}** ha salido a la guild :confused:".format(kick))
+
 
 
 if "news" not in g:
@@ -62,5 +67,47 @@ for news in g["news"]:
 		continue
 
 	wh.send(push)
-	
+
 	time.sleep(2) # prevent rate limit, for example with boss FK
+
+
+
+if "achievements" not in g:
+	print("'achievements' not in g")
+	sys.exit()
+
+def ach_to_list(data):
+	ret = []
+
+	for d in data:
+		if "categories" in d:
+			ret.extend(ach_to_list(d["categories"]))
+
+		elif "achievements" in d:
+			ret.extend(ach_to_list(d["achievements"]))
+
+		else:
+			ret.append(d)
+
+	return ret
+
+a = ach_to_list(a["achievements"])
+
+achievements = [int(x) for x in r.smembers("bot:guild-ach")]
+
+for new in set(g["achievements"]["achievementsCompleted"]).difference(achievements):
+	r.sadd("bot:guild-ach", new)
+
+	ach = next((item for item in a if item["id"] == new), None)
+	if not ach or "title" not in ach:
+		continue
+
+	title = ach["title"]
+	desc = ach["description"]
+	url = "http://es.wowhead.com/achievement={0}".format(new)
+	icon = "https://wow.zamimg.com/images/wow/icons/large/{0}.jpg".format(ach["icon"])
+
+	wh.add_embed(webhook.embed(title=ach["title"], url="http://es.wowhead.com/achievement={0}".format(new), description=ach["description"], thumbnail=webhook.image(icon)))
+	wh.send(":clap: Vagrant Story ha ganado un logro!")
+
+	time.sleep(2)
