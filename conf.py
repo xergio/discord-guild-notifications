@@ -40,10 +40,10 @@ affix_human = {
 	"Necrótica": "- Sanación",
 	"Potenciante": "Se buffan al morir",
 	"Rebosante": "Overheal",
-	"Reforzada": "Bichos tochos",
+	"Reforzada": "Bichos :muscle:",
 	"Sanguina": "Pozo al morir",
 	"Sísmica": "El puto quake",
-	"Tiránica": "Bosses tochos",
+	"Tiránica": "Bosses :muscle:",
 	"Volcánica": "El puto volcanic"
 }
 
