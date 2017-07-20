@@ -32,12 +32,12 @@ affixes = {
 
 affix_human = {
 	"Bullente": "+ bichos",
-	"Detonante": "Explotan al morir",
+	"Detonante": "= Il'gynoth",
 	"Dolorosa": "Sangrado 90%",
 	"Explosiva": "Orbes de mierda",
 	"Furibunda": "Enrage 30%",
-	"Inquieta": "-Aggro",
-	"Necrótica": "-Sanación",
+	"Inquieta": "- Aggro",
+	"Necrótica": "- Sanación",
 	"Potenciante": "Se buffan al morir",
 	"Rebosante": "Overheal",
 	"Reforzada": "Bichos tochos",
