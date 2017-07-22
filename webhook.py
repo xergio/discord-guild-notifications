@@ -3,6 +3,9 @@
 
 import requests
 import json
+import time
+
+now = time.time()
 
 # https://discordapp.com/developers/docs/resources/webhook#execute-webhook
 class Webhook():
@@ -16,6 +19,8 @@ class Webhook():
 			"embeds": []
 		}
 
+		self.requests = requests.Session()
+
 	def add_embed(self, embed):
 		self.wh["embeds"].append(embed)
 
@@ -27,7 +32,10 @@ class Webhook():
 		self.wh["tts"] = tts
 		#print(self.wh)
 
-		r = requests.post(self.url, json=self.wh)
+		r = self.requests.post(self.url, json=self.wh)
+
+		if "X-RateLimit-Remaining" in r.headers and int(r.headers["X-RateLimit-Remaining"]) <= 5:
+			raise Exception("RateLimit {0}/{1}, reset in ~{2}s".format(r.headers["X-RateLimit-Remaining"], r.headers["X-RateLimit-Limit"], int(r.headers["X-RateLimit-Reset"])-int(now)))
 
 		if r.text != "":
 			raise Exception("Webhook error: {0}".format(r.text))
