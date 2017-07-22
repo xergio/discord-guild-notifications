@@ -66,7 +66,7 @@ for zone, instance in conf.zones.items():
 					if key in clss:
 						spec = conf.class_icons[key]
 				#party.append("{2}{0}{1}".format(name, "" if "dun-modr" in url else " *({})*".format(url.split("/")[6]), roles[len(party)]))
-				party.append("{1}{0}".format(name if "dun-modr" in url else "*{}*".format(name), spec))
+				party.append("{1} {0}".format(name if "dun-modr" in url else "*{}*".format(name), spec))
 
 				for member in members:
 					if "/{}".format(member).lower() in url and "dun-modr" in url:
@@ -87,7 +87,7 @@ for zone, instance in conf.zones.items():
 				msg = ":mega: **[{0}](<{5}>) +{1}** hecha en **{2}** {3}, **rank {4}** de Dun Modr".format(instance, lvl, record, tip, pos, warcraft_api.format(zone))
 				#r.rpush("bot:rss:new", msg)
 				#print(msg)
-				wh.add_embed(webhook.embed(title=" ".join(party)))
+				wh.add_embed(webhook.embed(title=", ".join(party)))
 				wh.send(msg)
 
 	except:
