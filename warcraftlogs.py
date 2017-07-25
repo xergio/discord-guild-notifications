@@ -26,4 +26,4 @@ for report in wl:
 
 	url = "https://www.warcraftlogs.com/reports/{0}".format(report["id"])
 	#r.rpush("bot:rss:new", "<:Warcraftlogs:283906655484379138> Log en vivo! **{2}** por **{0}** en <{1}>".format(report["owner"], url, report["title"]))
-	wh.send("{3} Log en vivo! **[{2}](<{1}>)** por **{0}**".format(report["owner"], url, report["title"], conf.icon_warcraftlogs))
+	wh.send("{3} Logs! **[{2}](<{1}>)** por **{0}**".format(report["owner"], url, report["title"], conf.icon_warcraftlogs))

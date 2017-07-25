@@ -44,7 +44,7 @@ for m in members:
 
 			if feed["itemId"] in items and r.sadd("bot:legends", fid):
 				#r.rpush("bot:rss:new", ":unicorn: **{0}** pilla legendario! **{1}**! <http://es.wowhead.com/item={2}>".format(member["name"], items[feed["itemId"]]["name_eses"], feed["itemId"]) )
-				wh.send(":unicorn: **{0}** pilla legendario! **[{1}](<http://es.wowhead.com/item={2}>)**".format(member["name"], items[feed["itemId"]]["name_eses"], feed["itemId"]))
+				wh.send(":tangerine: **{0}** pilla legendario! **[{1}](<http://es.wowhead.com/item={2}>)**".format(member["name"], items[feed["itemId"]]["name_eses"], feed["itemId"]))
 
 	except:
 		traceback.print_exc()

@@ -28,4 +28,4 @@ for stream in t["streams"]:
 		continue
 
 	#r.rpush("bot:rss:new", ":projector: **{0}** está stremeando <{1}>".format(stream["channel"]["name"], stream["channel"]["url"]))
-	wh.send("{3} **{0}** está stremeando! **[{2}](<{1}>)**".format(stream["channel"]["name"], stream["channel"]["url"], stream["channel"]["status"], conf.icon_twitch))
+	wh.send("{3} **{0}** está stremeando: [{2}](<{1}>)".format(stream["channel"]["name"], stream["channel"]["url"], stream["channel"]["status"], conf.icon_twitch))
