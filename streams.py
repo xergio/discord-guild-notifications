@@ -9,9 +9,9 @@ import conf
 
 now = time.time()
 
-wh = webhook.Webhook(conf.url_discord_webhook)
+wh = webhook.Webhook(conf.url_discord_webhook_news)
 
-r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True)
+r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True, db=1)
 
 twitch_api = "https://api.twitch.tv/kraken/streams/followed?oauth_token={0}".format(conf.twitch_token)
 
@@ -27,5 +27,5 @@ for stream in t["streams"]:
 	if r.zadd("bot:twitch", now, stream["channel"]["name"]) == 0:
 		continue
 
-	#r.rpush("bot:rss:new", ":projector: **{0}** está stremeando <{1}>".format(stream["channel"]["name"], stream["channel"]["url"]))
 	wh.send("{3} **{0}** está stremeando: [{2}](<{1}>)".format(stream["channel"]["name"], stream["channel"]["url"], stream["channel"]["status"], conf.icon_twitch))
+	time.sleep(2)

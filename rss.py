@@ -9,9 +9,9 @@ import conf
 
 now = time.time()
 
-wh = webhook.Webhook(conf.url_discord_webhook)
+wh = webhook.Webhook(conf.url_discord_webhook_news)
 
-r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True)
+r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True, db=1)
 r.zremrangebyscore("bot:rss", "-inf", now-(60*60*24*30*3)) # 3 meses de caché
 
 url_feeds = [
@@ -25,7 +25,7 @@ for url in url_feeds:
 
 		if "items" not in feed or len(feed["items"]) < 3:
 			continue
-			
+
 		for i in [0, 1, 2]: # 3 últimas noticias
 			entry = feed["items"][i]
 			fid = "{} {}".format(feed["feed"]["title"][0:20], entry["published"])
@@ -39,8 +39,8 @@ for url in url_feeds:
 			else:
 				icon = ":newspaper2:"
 
-			#r.rpush("bot:rss:new", "{2} {0}\n<{1}>".format(entry["title"], entry["link"], icon))
 			wh.send("{2} [{0}](<{1}>)".format(entry["title"], entry["link"], icon))
+			time.sleep(2)
 
 	except:
 		print(url)

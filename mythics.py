@@ -12,9 +12,9 @@ import conf
 
 now = time.time()
 
-wh = webhook.Webhook(conf.url_discord_webhook)
+wh = webhook.Webhook(conf.url_discord_webhook_guild)
 
-r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True)
+r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True, db=1)
 
 warcraft_api = "https://worldofwarcraft.com/es-es/game/pve/leaderboards/dun-modr/{}"
 
@@ -31,7 +31,7 @@ for zone, instance in conf.zones.items():
 		if len(top) < 3:
 			print("no affix?")
 			continue
-			
+
 		affix  = "" if top[0] not in conf.affixes else conf.affixes[top[0]]
 		affix += "" if top[1] not in conf.affixes else conf.affixes[top[1]]
 		affix += "" if top[2] not in conf.affixes else conf.affixes[top[2]]
@@ -53,7 +53,7 @@ for zone, instance in conf.zones.items():
 			inguild = False
 			party = []
 
-			if lvl < 15 or r.zadd("bot:m+", now, k) == 0:
+			if lvl < conf.min_mythic or r.zadd("bot:m+", now, k) == 0:
 				continue
 
 			for player in team:
@@ -71,7 +71,7 @@ for zone, instance in conf.zones.items():
 				for member in members:
 					if "/{}".format(member).lower() in url and "dun-modr" in url:
 						inguild = True
-			
+
 			if inguild:
 				chests = 0
 				for timer in conf.timers[zone]:
@@ -85,8 +85,8 @@ for zone, instance in conf.zones.items():
 				#tip = "(piedra +{0} por {1})".format(chests, delta)
 				tip = "(piedra +{0})".format(chests, delta)
 				msg = ":mega: **[{0}](<{5}>) +{1}** hecha en **{2}** {3}, **rank {4}** de Dun Modr".format(instance, lvl, record, tip, pos, warcraft_api.format(zone))
-				#r.rpush("bot:rss:new", msg)
 				#print(msg)
+				wh.clear_embeds()
 				wh.add_embed(webhook.embed(title=", ".join(party)))
 				wh.send(msg)
 

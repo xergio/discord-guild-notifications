@@ -11,9 +11,9 @@ import conf
 
 now = time.time()
 
-wh = webhook.Webhook(conf.url_discord_webhook)
+wh = webhook.Webhook(conf.url_discord_webhook_guild)
 
-r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True)
+r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True, db=1)
 
 bnet_member = "https://{1}.api.battle.net/wow/character/dun%20modr/{0}?fields=feed,items&locale=es_ES&apikey={2}"
 
@@ -35,16 +35,16 @@ for m in members:
 
 		if "feed" not in member:
 			continue
-		
+
 		for feed in member["feed"]:
 			if feed["type"] != "LOOT":
 				continue
-			
+
 			fid = "{}-{}".format(m, feed["itemId"])
 
 			if feed["itemId"] in items and r.sadd("bot:legends", fid):
-				#r.rpush("bot:rss:new", ":unicorn: **{0}** pilla legendario! **{1}**! <http://es.wowhead.com/item={2}>".format(member["name"], items[feed["itemId"]]["name_eses"], feed["itemId"]) )
 				wh.send(":tangerine: **{0}** pilla legendario! **[{1}](<http://es.wowhead.com/item={2}>)**".format(member["name"], items[feed["itemId"]]["name_eses"], feed["itemId"]))
+				time.sleep(2)
 
 	except:
 		traceback.print_exc()

@@ -9,13 +9,13 @@ import conf
 
 now = time.time()
 
-wh = webhook.Webhook(conf.url_discord_webhook)
+wh = webhook.Webhook(conf.url_discord_webhook_guild)
 
-r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True)
+r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True, db=1)
 
 bnet_achs = conf.battle_net_url("https://{0}.api.battle.net/wow/data/guild/achievements?locale=es_ES&apikey={1}")
 
-bnet_guild = conf.battle_net_url("https://{0}.api.battle.net/wow/guild/dun%20modr/vagrant%20story?fields=news,members,achievements&locale=es_ES&apikey={1}")
+bnet_guild = conf.battle_net_url("https://{0}.api.battle.net/wow/guild/dun%20modr/farm%20and%20furious?fields=news,members,achievements&locale=es_ES&apikey={1}")
 
 a = requests.get(url=bnet_achs).json()
 g = requests.get(url=bnet_guild).json()
@@ -38,10 +38,12 @@ for new in chars.difference(members):
 	r.sadd("bot:members", new)
 	members.add(new)
 	wh.send(":inbox_tray: **{0}** ha entrado a la guild! 🎉".format(new))
+	time.sleep(2)
 
 for kick in members.difference(chars):
 	r.srem("bot:members", kick)
 	wh.send(":outbox_tray: **{0}** ha salido a la guild :confused:".format(kick))
+	time.sleep(2)
 
 
 
@@ -67,7 +69,6 @@ for news in g["news"]:
 		continue
 
 	wh.send(push)
-
 	time.sleep(2) # prevent rate limit, for example with boss FK
 
 
@@ -107,7 +108,8 @@ for new in set(g["achievements"]["achievementsCompleted"]).difference(achievemen
 	url = "http://es.wowhead.com/achievement={0}".format(new)
 	icon = "https://wow.zamimg.com/images/wow/icons/large/{0}.jpg".format(ach["icon"])
 
+	wh.clear_embeds()
 	wh.add_embed(webhook.embed(title=ach["title"], url="http://es.wowhead.com/achievement={0}".format(new), description=ach["description"], thumbnail=webhook.image(icon)))
-	wh.send(":clap: Vagrant Story ha ganado un logro!")
+	wh.send(":clap: La guild ha ganado un logro!")
 
 	time.sleep(2)

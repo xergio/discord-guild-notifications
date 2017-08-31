@@ -1,26 +1,28 @@
 
 from tokens import *
 
-icon_wowhead = "<:wowhead:283900950379233280>"
-icon_mmoc = "<:MMOChampion:283900921694650368>"
-icon_twitch = "<:twitch:332609778285019137>"
-icon_warcraftlogs = "<:Warcraftlogs:283906655484379138>"
+icon_wowhead = "<:wowhead:352756406925000704>"
+icon_mmoc = "<:MMOChampion:352756407109681153>"
+icon_twitch = "<:twitch:352756406904160257>"
+icon_warcraftlogs = "<:Warcraftlogs:352756407164076034>"
+
+min_mythic = 10
 
 affixes = {
-	"Bullente": "<:m_teeming:278565188410802176>",
-	"Detonante": "<:m_bursting:327109581048250369>",
-	"Dolorosa": "<:m_grievous:327109581132136449>",
-	"Explosiva": "<:m_explosive:327109581249576960>",
-	"Furibunda": "<:m_raging:278565187986915328>",
-	"Inquieta": "<:m_skittish:278565188087840768>",
-	"Necrótica": "<:m_necro:278565187634593795>",
-	"Potenciante": "<:m_bolstering:278565187987046400>",
-	"Rebosante": "<:m_over:278565188033314816>",
-	"Reforzada": "<:m_forti:278565187588456450>",
-	"Sanguina": "<:m_sanguine:278565188020469760>",
-	"Sísmica": "<:m_quaking:327109581236862976>",
-	"Tiránica": "<:m_tyra:278565187852828674>",
-	"Volcánica": "<:m_volcanic:278565188125458432>"
+	"Bullente": "<:m_teeming:352756406514089994>",
+	"Detonante": "<:m_bursting:352760092397010944>",
+	"Dolorosa": "<:m_grievous:352760092472377344>",
+	"Explosiva": "<:m_explosive:352760091981905932>",
+	"Furibunda": "<:m_raging:352756406492987394>",
+	"Inquieta": "<:m_skittish:352756406497181698>",
+	"Necrótica": "<:m_necro:352756406333472769>",
+	"Potenciante": "<:m_bolstering:352756406509633536>",
+	"Rebosante": "<:m_over:352756406463758337>",
+	"Reforzada": "<:m_forti:352756406497050624>",
+	"Sanguina": "<:m_sanguine:352756406153379844>",
+	"Sísmica": "<:m_quaking:352760093118300160>",
+	"Tiránica": "<:m_tyra:352756406279208964>",
+	"Volcánica": "<:m_volcanic:352756406341992449>"
 }
 
 affix_human = {
@@ -86,18 +88,18 @@ timers = {
 }
 
 class_icons = {
-	"Character--WARRIOR": "<:class_warrior:278565187257237505>",
-	"Character--DRUID": "<:class_druid:278565188381442048>",
-	"Character--HUNTER": "<:class_hunter:278565187605364737>",
-	"Character--DEATHKNIGHT": "<:class_deathknight:278565187903029248>",
-	"Character--MAGE": "<:class_mage:278565187919937537>",
-	"Character--DEMONHUNTER": "<:class_demonhunter:278565187500376065>",
-	"Character--PRIEST": "<:class_priest:278565187970269184>",
-	"Character--PALADIN": "<:class_paladin:278565187588587521>",
-	"Character--SHAMAN": "<:class_shaman:278565187831726081>",
-	"Character--ROGUE": "<:class_rogue:278565187940909056>",
-	"Character--WARLOCK": "<:class_warlock:278565187596976130>",
-	"Character--MONK": "<:class_monk:278565187618078722>"
+	"Character--WARRIOR": "<:class_warrior:352756406232809483>",
+	"Character--DRUID": "<:class_druid:352756406421815296>",
+	"Character--HUNTER": "<:class_hunter:352756406278946827>",
+	"Character--DEATHKNIGHT": "<:class_deathknight:352756406408970240>",
+	"Character--MAGE": "<:class_mage:352756406035808258>",
+	"Character--DEMONHUNTER": "<:class_demonhunter:352756406425878528>",
+	"Character--PRIEST": "<:class_priest:352756406299918337>",
+	"Character--PALADIN": "<:class_paladin:352756406446981130>",
+	"Character--SHAMAN": "<:class_shaman:352756406459432960>",
+	"Character--ROGUE": "<:class_rogue:352756406455107584>",
+	"Character--WARLOCK": "<:class_warlock:352756406476341248>",
+	"Character--MONK": "<:class_monk:352756406337798145>"
 }
 
 #stop here!

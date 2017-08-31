@@ -13,8 +13,8 @@ class Webhook():
 	def __init__(self, url, **kwargs):
 		self.url = url
 		self.wh = {
-			"username": kwargs.get("username", None),
-			"avatar_url": kwargs.get("avatar_url", None),
+			#"username": kwargs.get("username", None),
+			#"avatar_url": kwargs.get("avatar_url", None),
 			"content": None,
 			"embeds": []
 		}
@@ -34,8 +34,16 @@ class Webhook():
 
 		r = self.requests.post(self.url, json=self.wh)
 
-		if "X-RateLimit-Remaining" in r.headers and int(r.headers["X-RateLimit-Remaining"]) <= 5:
-			raise Exception("RateLimit {0}/{1}, reset in ~{2}s".format(r.headers["X-RateLimit-Remaining"], r.headers["X-RateLimit-Limit"], int(r.headers["X-RateLimit-Reset"])-int(now)))
+		if "X-RateLimit-Remaining" in r.headers and int(r.headers["X-RateLimit-Remaining"]) <= 1:
+			wait = int(r.headers["X-RateLimit-Reset"])-int(now)
+			raise Exception("RateLimit {0}/{1}, reset in ~{2}s".format(r.headers["X-RateLimit-Remaining"], r.headers["X-RateLimit-Limit"], wait))
+
+			"""rl = "RateLimit {0}/{1}, reset in ~{2}s".format(r.headers["X-RateLimit-Remaining"], r.headers["X-RateLimit-Limit"], wait)
+			if wait < 600:
+				print(rl)
+				time.sleep(wait+1)
+			else:
+				raise Exception(rl)"""
 
 		if r.text != "":
 			raise Exception("Webhook error: {0}".format(r.text))
