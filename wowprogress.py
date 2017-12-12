@@ -12,7 +12,7 @@ wh = webhook.Webhook(conf.url_discord_webhook_guild)
 
 r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True, db=1)
 
-wp_api = "http://www.wowprogress.com/guild/eu/dun-modr/Farm+and+Furious/json_rank"
+wp_api = "http://www.wowprogress.com/guild/eu/dun-modr/Mirrors/json_rank"
 
 rank = requests.get(url=wp_api).json()
 

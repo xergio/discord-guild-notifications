@@ -6,7 +6,7 @@ icon_mmoc = "<:MMOChampion:352756407109681153>"
 icon_twitch = "<:twitch:352756406904160257>"
 icon_warcraftlogs = "<:Warcraftlogs:352756407164076034>"
 
-min_mythic = 10
+min_mythic = 15
 
 affixes = {
 	"Bullente": "<:m_teeming:352756406514089994>",
@@ -69,11 +69,12 @@ zones = {
 	"black-rook-hold": "Torreón Grajo Negro", 
 	"cathedral-of-eternal-night": "Catedral de la Noche Eterna", 
 	"return-to-karazhan-lower": "Regreso a Karazhan: inferior", 
-	"return-to-karazhan-upper": "Regreso a Karazhan: superior"
+	"return-to-karazhan-upper": "Regreso a Karazhan: superior",
+	"seat-of-the-triumvirate": "Trono del Triunvirato"
 }
 
 timers = {
-	"black-rook-hold": ["38:00", "30:24", "22:48"],
+	"black-rook-hold": ["39:00", "31:12", "23:25"],
 	"court-of-stars": ["30:00", "24:00", "18:00"],
 	"darkheart-thicket": ["30:00", "24:00", "18:00"],
 	"eye-of-azshara": ["35:00", "28:00", "21:00"],
@@ -84,7 +85,8 @@ timers = {
 	"vault-of-the-wardens": ["33:00", "26:24", "19:48"],
 	"cathedral-of-eternal-night": ["33:00", "27:24", "19:48"],
 	"return-to-karazhan-lower": ["39:00", "31:12", "23:24"],
-	"return-to-karazhan-upper": ["39:00", "31:12", "23:24"]
+	"return-to-karazhan-upper": ["39:00", "31:12", "23:24"],
+	"seat-of-the-triumvirate": ["35:00", "28:00", "21:00"]
 }
 
 class_icons = {

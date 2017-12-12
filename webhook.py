@@ -31,7 +31,7 @@ class Webhook():
 		self.wh["content"] = content
 		self.wh["tts"] = tts
 		#print(self.wh)
-
+		#return True # BORRAR ESTO
 		r = self.requests.post(self.url, json=self.wh)
 
 		if "X-RateLimit-Remaining" in r.headers and int(r.headers["X-RateLimit-Remaining"]) <= 1:

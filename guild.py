@@ -15,7 +15,7 @@ r = redis.StrictRedis(host='localhost', charset="utf-8", decode_responses=True, 
 
 bnet_achs = conf.battle_net_url("https://{0}.api.battle.net/wow/data/guild/achievements?locale=es_ES&apikey={1}")
 
-bnet_guild = conf.battle_net_url("https://{0}.api.battle.net/wow/guild/dun%20modr/farm%20and%20furious?fields=news,members,achievements&locale=es_ES&apikey={1}")
+bnet_guild = conf.battle_net_url("https://{0}.api.battle.net/wow/guild/dun%20modr/mirrors?fields=news,members,achievements&locale=es_ES&apikey={1}")
 
 a = requests.get(url=bnet_achs).json()
 g = requests.get(url=bnet_guild).json()
@@ -37,12 +37,12 @@ for member in g["members"]:
 for new in chars.difference(members):
 	r.sadd("bot:members", new)
 	members.add(new)
-	wh.send(":inbox_tray: **{0}** ha entrado a la guild! 🎉".format(new))
+	wh.send(":inbox_tray: **[{0}](<https://www.wowprogress.com/character/eu/dun-modr/{0}>)** ha entrado a la guild! 🎉".format(new))
 	time.sleep(2)
 
 for kick in members.difference(chars):
 	r.srem("bot:members", kick)
-	wh.send(":outbox_tray: **{0}** ha salido a la guild :confused:".format(kick))
+	wh.send(":outbox_tray: **[{0}](<https://www.wowprogress.com/character/eu/dun-modr/{0}>)** ha salido a la guild :confused:".format(kick))
 	time.sleep(2)
 
 
