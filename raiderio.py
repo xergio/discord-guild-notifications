@@ -1,11 +1,11 @@
 #! /usr/bin/python3
 
 import redis
-import time
 import requests
 import webhook
 import conf
 
+# Every wednesday 9am
 # 0 9 * * 3 timeout 58 /mnt/raid10/cron/raiderio.py >> /var/log/crons/raiderio.log 2>&1
 
 wh = webhook.Webhook(conf.url_discord_webhook_guild)
@@ -41,4 +41,3 @@ if api is not None and "raid_rankings" in api and "raid_progression" and slug in
 	if msg:
 		msg += " - [Raider.IO](<https://raider.io/guilds/eu/dun-modr/Mirrors>) - [WoWProgress](<https://www.wowprogress.com/guild/eu/dun-modr/Mirrors>)"
 		wh.send(msg)
-		time.sleep(2)
