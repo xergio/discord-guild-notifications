@@ -1,11 +1,14 @@
 #! /usr/bin/python3
+"""
+WarcrafLogs notifications
+"""
 
-import redis
 import time
+import sys
+import redis
 import requests
 import webhook
 import conf
-import sys
 
 now = time.time()
 
@@ -19,16 +22,16 @@ wl_api = "https://www.warcraftlogs.com/v1/reports/guild/mirrors/dun-modr/eu?api_
 wl = requests.get(url=wl_api).json()
 
 if "error" in wl:
-	print(wl)
-	sys.exit()
+    print(wl)
+    sys.exit()
 
 for report in wl:
-	if report["start"]/1000 < now-(60*60*24*7): # oooold, 7 day only
-		continue
+    if report["start"]/1000 < now-(60*60*24*7): # oooold, 7 day only
+        continue
 
-	if not r.zadd("bot:warcraftlogs", now, report["id"]):
-		continue
+    if not r.zadd("bot:warcraftlogs", now, report["id"]):
+        continue
 
-	url = "https://www.warcraftlogs.com/reports/{0}".format(report["id"])
-	wh.send("{3} Logs! **[{2}](<{1}>)** por **{0}**".format(report["owner"], url, report["title"], conf.icon_warcraftlogs))
-	time.sleep(2)
+    url = "https://www.warcraftlogs.com/reports/{0}".format(report["id"])
+    wh.send("{3} Logs! **[{2}](<{1}>)** por **{0}**".format(report["owner"], url, report["title"], conf.icon_warcraftlogs))
+    time.sleep(2)

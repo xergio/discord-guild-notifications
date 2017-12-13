@@ -1,4 +1,7 @@
 #! /usr/bin/python3
+"""
+Raider.IO progress
+"""
 
 import redis
 import requests
@@ -18,26 +21,26 @@ slug = "antorus-the-burning-throne"
 api = requests.get(url=rio_api).json()
 
 if api is not None and "raid_rankings" in api and "raid_progression" and slug in api["raid_rankings"]:
-	prev_rank = r.get("bot:raiderio")
+    prev_rank = r.get("bot:raiderio")
 
-	rank = api["raid_rankings"][slug]["mythic"]["realm"]
-	progress = api["raid_progression"][slug]["summary"]
-	msg = None
+    rank = api["raid_rankings"][slug]["mythic"]["realm"]
+    progress = api["raid_progression"][slug]["summary"]
+    msg = None
 
-	if prev_rank is None:
-		msg = ":arrow_right: La guild entra en el ranking de Dun Modr: #**{0}**, {1}".format(rank, progress)
+    if prev_rank is None:
+        msg = ":arrow_right: La guild entra en el ranking de Dun Modr: #**{0}**, {1}".format(rank, progress)
 
-	elif int(prev_rank) > int(rank):
-		msg = ":arrow_up: La guild sube en el ranking de Dun Modr: #**{0}** (+{1}), {2}".format(rank, int(prev_rank)-int(rank), progress)
+    elif int(prev_rank) > int(rank):
+        msg = ":arrow_up: La guild sube en el ranking de Dun Modr: #**{0}** (+{1}), {2}".format(rank, int(prev_rank)-int(rank), progress)
 
-	elif int(prev_rank) < int(rank):
-		msg = ":arrow_down: La guild baja en el ranking de Dun Modr: #**{0}** (-{1}), {2}".format(rank, int(rank)-int(prev_rank), progress)
+    elif int(prev_rank) < int(rank):
+        msg = ":arrow_down: La guild baja en el ranking de Dun Modr: #**{0}** (-{1}), {2}".format(rank, int(rank)-int(prev_rank), progress)
 
-	elif int(prev_rank) == int(rank):
-		msg = ":ok_hand: La guild se mantiene en el ranking de Dun Modr: #**{0}**, {1}".format(rank, progress)
+    elif int(prev_rank) == int(rank):
+        msg = ":ok_hand: La guild se mantiene en el ranking de Dun Modr: #**{0}**, {1}".format(rank, progress)
 
-	r.set("bot:raiderio", rank)
+    r.set("bot:raiderio", rank)
 
-	if msg:
-		msg += " - [Raider.IO](<https://raider.io/guilds/eu/dun-modr/Mirrors>) - [WoWProgress](<https://www.wowprogress.com/guild/eu/dun-modr/Mirrors>)"
-		wh.send(msg)
+    if msg:
+        msg += " - [Raider.IO](<https://raider.io/guilds/eu/dun-modr/Mirrors>) - [WoWProgress](<https://www.wowprogress.com/guild/eu/dun-modr/Mirrors>)"
+        wh.send(msg)

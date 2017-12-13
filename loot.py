@@ -1,11 +1,14 @@
 #! /usr/bin/python3
+"""
+Loot notifications
+"""
 
-import redis
 import time
 import json
-import requests
 import traceback
 import os
+import redis
+import requests
 import webhook
 import conf
 
@@ -20,34 +23,34 @@ bnet_member = "https://{1}.api.battle.net/wow/character/dun%20modr/{0}?fields=fe
 # legends database
 items = {}
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "items_legend.json"), 'r') as f:
-	js = json.load(f)
+    js = json.load(f)
 
-	for item in js:
-		items[item["item_id"]] = item
+    for item in js:
+        items[item["item_id"]] = item
 
 
 members = r.smembers("bot:members") # i need all guild members
 request = requests.Session()
 
 for m in members:
-	try:
-		member = request.get(url=bnet_member.format(m, conf.battle_net_region, conf.battle_net_apikey)).json()
+    try:
+        member = request.get(url=bnet_member.format(m, conf.battle_net_region, conf.battle_net_apikey)).json()
 
-		if "feed" not in member:
-			continue
+        if "feed" not in member:
+            continue
 
-		for feed in member["feed"]:
-			if feed["type"] != "LOOT":
-				continue
+        for feed in member["feed"]:
+            if feed["type"] != "LOOT":
+                continue
 
-			fid = "{}-{}".format(m, feed["itemId"])
+            fid = "{}-{}".format(m, feed["itemId"])
 
-			if feed["itemId"] in items and r.sadd("bot:legends", fid):
-				wh.send(":tangerine: **{0}** pilla legendario! **[{1}](<http://es.wowhead.com/item={2}>)**".format(member["name"], items[feed["itemId"]]["name_eses"], feed["itemId"]))
-				time.sleep(2)
+            if feed["itemId"] in items and r.sadd("bot:legends", fid):
+                wh.send(":tangerine: **{0}** pilla legendario! **[{1}](<http://es.wowhead.com/item={2}>)**".format(member["name"], items[feed["itemId"]]["name_eses"], feed["itemId"]))
+                time.sleep(2)
 
-	except:
-		traceback.print_exc()
+    except:
+        traceback.print_exc()
 
 """
 Vamos a generar el archivo items_legend.json
