@@ -30,5 +30,7 @@ for stream in t["streams"]:
     if r.zadd("bot:twitch", now, stream["channel"]["name"]) == 0:
         continue
 
-    wh.send("{3} **{0}** está stremeando: [{2}](<{1}>)".format(stream["channel"]["name"], stream["channel"]["url"], stream["channel"]["status"], conf.icon_twitch))
+    game = stream["channel"]["game"] if "game" in stream["channel"] else "ahora"
+
+    wh.send("{3} **{0}** está stremeando {4}: [{2}](<{1}>)".format(stream["channel"]["name"], stream["channel"]["url"], stream["channel"]["status"], conf.icon_twitch, game))
     time.sleep(2)
