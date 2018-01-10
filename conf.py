@@ -46,10 +46,6 @@ affix_human = {
 }
 
 affix_rotation = [
-    ["Furibunda", "Volcánica", "Tiránica"],
-    ["Bullente", "Explosiva", "Reforzada"],
-    ["Potenciante", "Dolorosa", "Tiránica"],
-    ["Sanguina", "Volcánica", "Reforzada"],
     ["Detonante", "Inquieta", "Tiránica"],
     ["Bullente", "Sísmica", "Reforzada"],
     ["Furibunda", "Necrótica", "Tiránica"],
@@ -57,7 +53,11 @@ affix_rotation = [
     ["Bullente", "Necrótica", "Tiránica"],
     ["Sanguina", "Dolorosa", "Reforzada"],
     ["Potenciante", "Explosiva", "Tiránica"],
-    ["Detonante", "Sísmica", "Reforzada"]
+    ["Detonante", "Sísmica", "Reforzada"],
+    ["Furibunda", "Volcánica", "Tiránica"],
+    ["Bullente", "Explosiva", "Reforzada"],
+    ["Potenciante", "Dolorosa", "Tiránica"],
+    ["Sanguina", "Volcánica", "Reforzada"]
 ]
 
 zones = {
